@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Gurukul School</title>
+    <style>
+        /* Rainbow Wave Animation */
+        @keyframes waveAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; }
+
+        .rainbow-header {
+            height: 110px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: waveAnimation 10s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 3px solid white;
+        }
+
+        .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
+        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; background: white; margin-bottom: 5px; }
+        .school-name { font-size: 20px; font-weight: bold; }
+
+        nav { background: #1a1a1a; display: flex; overflow-x: auto; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; }
+
+        .container { padding: 25px; max-width: 900px; margin: auto; }
+        
+        h2 { color: #0056b3; text-align: center; margin-bottom: 30px; position: relative; }
+        h2::after { content: ''; width: 60px; height: 4px; background: #ffcc00; display: block; margin: 10px auto; border-radius: 2px; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            height: 250px;
+            border: 2px solid #eee;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .img-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-top: 30px; }
+
+        footer { background: #111; color: white; padding: 20px; text-align: center; font-size: 12px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="rainbow-header">
+        <div class="header-content">
+            <img src="https://i.ibb.co/xtXjCfQ8/1000100274.jpg" class="logo-img" alt="Logo">
+            <div class="school-name">Gurukul School Dhankoli</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="gallery.html" class="active-link">Gallery</a>
+        <a href="admission.html">Admission</a>
+    </nav>
+
+    <div class="container">
+        <h2>स्कूल की झलकियां</h2>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/TDhs8Rff/1000100274.jpg" alt="School Building">
+                <div class="img-caption">आधुनिक विद्यालय भवन</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/RG7n4rtH/1000100412.jpg" alt="School Bus Facility">
+                <div class="img-caption">सुरक्षित स्कूल बस सुविधा</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/1GjbGz3T/1000100274.jpg" alt="Campus View">
+                <div class="img-caption">भव्य विद्यालय परिसर</div>
+            </div>
+        </div>
+
+        <a href="admission.html" class="next-btn">अगला स्टेप: ऑनलाइन प्रवेश ➔</a>
+    </div>
+
+    <footer>
+        © 2026 Gurukul School Dhankoli | Gallery
+    </footer>
+
+</body>
+</html>

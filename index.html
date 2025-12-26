@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurukul School Dhankoli - Home</title>
+    <style>
+        /* Rainbow Wave Animation */
+        @keyframes waveAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; }
+
+        /* Upar ka Rainbow Header (3cm approx) */
+        .rainbow-header {
+            height: 110px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: waveAnimation 10s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 3px solid white;
+        }
+
+        .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
+        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; background: white; margin-bottom: 5px; }
+        .school-name { font-size: 22px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        /* Navigation Bar */
+        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; }
+
+        /* Main Content Area (White Background) */
+        .content-container { padding: 20px; max-width: 800px; margin: auto; }
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; }
+        .main-photo { width: 100%; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+
+        h2 { color: #0056b3; font-size: 24px; border-left: 5px solid #ffcc00; padding-left: 10px; margin-bottom: 20px; }
+        
+        /* Visheshta List */
+        .feature-item { background: #f8faff; padding: 15px; margin-bottom: 10px; border-radius: 8px; font-weight: bold; color: #004085; display: flex; align-items: center; border-left: 4px solid #23a6d5; }
+        .feature-item::before { content: "✔"; color: #28a745; margin-right: 10px; }
+
+        /* Next Page Button */
+        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; text-decoration: none; display: block; text-align: center; }
+
+        /* Contact Details */
+        .contact-box p { margin: 8px 0; font-size: 16px; }
+
+        /* Social Links Footer */
+        footer { background: #111; color: white; padding: 30px 20px; text-align: center; }
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .social-btn { text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 13px; text-align: center; }
+        .tg { background: #0088cc; } .yt { background: #ff0000; } .ig { background: #e1306c; } .wa { background: #25d366; }
+    </style>
+</head>
+<body>
+
+    <div class="rainbow-header">
+        <div class="header-content">
+            <img src="https://i.ibb.co/xtXjCfQ8/1000100274.jpg" class="logo-img" alt="Gurukul Logo">
+            <div class="school-name">Gurukul School Dhankoli</div>
+        </div>
+    </div>
+
+    <nav>
+        <a href="index.html" class="active-link">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="admission.html">Admission</a>
+    </nav>
+
+    <div class="content-container">
+        <div class="card">
+            <img src="https://i.ibb.co/TDhs8Rff/1000100274.jpg" class="main-photo" alt="School Building">
+            
+            <h2>Hamari Visheshtayein</h2>
+            <div class="feature-item">Sanskar aur Shiksha ka Sahi Sangam</div>
+            <div class="feature-item">Nayi aur Surakshit School Bus</div>
+            <div class="feature-item">Expert aur Dedicated Teachers</div>
+            <div class="feature-item">Computer Lab aur Smart Classes</div>
+            <div class="feature-item">Khel-Kood ke liye Bada Maidan</div>
+            <div class="feature-item">CCTV se Surakshit Campus</div>
+
+            <a href="about.html" class="next-btn">Agle Page Par Jayein (About Us) ➔</a>
+        </div>
+
+        <div class="card contact-box">
+            <h2>Sampark Details</h2>
+            <p><b>📍 Pata:</b> Dhankoli (Maulasar), Rajasthan</p>
+            <p><b>📞 Adhyaksh:</b> 9887071127</p>
+            <p><b>📞 Sachiv:</b> 977256435</p>
+            <p><b>📞 Koshadhyaksh:</b> 9887906618</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Hmare Saath Judyein:</p>
+        <div class="social-grid">
+            <a href="https://t.me/+ES12goFlHcphNjg1" class="social-btn tg">Telegram</a>
+            <a href="https://youtube.com/@g.s.s.s.dhankholi" class="social-btn yt">YouTube</a>
+            <a href="https://www.instagram.com/gurukul_school_dhankoli" class="social-btn ig">Instagram</a>
+            <a href="https://whatsapp.com/channel/0029Vb6qqNx5PO0tC5RMGq0p" class="social-btn wa">WhatsApp</a>
+        </div>
+        <p style="font-size: 11px; opacity: 0.5; margin-top: 15px;">© 2026 Gurukul School Dhankoli | All Rights Reserved</p>
+    </footer>
+
+
