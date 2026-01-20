@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gurukul School Dhankoli - Home</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <style>
         /* Rainbow Wave Animation */
         @keyframes waveAnimation {
@@ -12,103 +14,311 @@
             100% { background-position: 0% 50%; }
         }
 
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; overflow-x: hidden; }
 
-        /* Upar ka Rainbow Header (3cm approx) */
+        /* --- 1. 3D CUBE LOADER OVERLAY --- */
+        #loader-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .spinner {
+            width: 60px; height: 60px;
+            background-color: #23a6d5;
+            animation: rotateCube 1.2s infinite ease-in-out;
+        }
+
+        @keyframes rotateCube {
+            0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); background-color: #23a6d5; }
+            50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); background-color: #e73c7e; }
+            100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); background-color: #ee7752; }
+        }
+
+        .loading-text { margin-top: 20px; font-weight: bold; color: #555; letter-spacing: 2px; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+
+        /* --- 2. WELCOME CELEBRATION TEXT --- */
+        #welcome-text-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .big-welcome { 
+            font-size: 40px; font-weight: 900; color: #fff; 
+            text-shadow: 0 0 20px #000, 0 0 10px #23a6d5;
+            text-align: center; transform: scale(0);
+            animation: popUp 0.5s forwards;
+        }
+        @keyframes popUp { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+
+        /* Header Styles */
         .rainbow-header {
             height: 110px;
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: waveAnimation 10s ease infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border-bottom: 3px solid white;
         }
 
         .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; background: white; margin-bottom: 5px; }
-        .school-name { font-size: 22px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .logo-img { width: 65px; height: 65px; border-radius: 50%; border: 3px solid white; background: white; margin-bottom: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); object-fit: cover; }
+        .school-name { font-size: 22px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 0.5px; }
 
-        /* Navigation Bar */
-        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; }
+        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav a { color: white; padding: 15px 25px; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { background: #333; }
+        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; background: #222; }
 
-        /* Main Content Area (White Background) */
-        .content-container { padding: 20px; max-width: 800px; margin: auto; }
-        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; }
-        .main-photo { width: 100%; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .content-container { padding: 25px; max-width: 800px; margin: auto; }
+        .card { background: white; border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #fff; }
+        .main-photo { width: 100%; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-        h2 { color: #0056b3; font-size: 24px; border-left: 5px solid #ffcc00; padding-left: 10px; margin-bottom: 20px; }
+        h2 { color: #2c3e50; font-size: 22px; border-left: 5px solid #23a6d5; padding-left: 15px; margin-bottom: 25px; font-weight: 700; }
         
-        /* Visheshta List */
-        .feature-item { background: #f8faff; padding: 15px; margin-bottom: 10px; border-radius: 8px; font-weight: bold; color: #004085; display: flex; align-items: center; border-left: 4px solid #23a6d5; }
-        .feature-item::before { content: "✔"; color: #28a745; margin-right: 10px; }
+        /* Login Box Styling */
+        .login-wrapper { background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); border: 1px solid #eee; border-top: 4px solid #23a6d5; border-radius: 15px; padding: 20px; text-align: center; }
+        .login-icon { font-size: 40px; margin-bottom: 10px; display: inline-block; background: #e0f7fa; width: 70px; height: 70px; line-height: 70px; border-radius: 50%; color: #006064; }
+        .input-group { text-align: left; margin-bottom: 15px; }
+        .input-label { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 5px; display: block; }
+        
+        /* Helper Text Style */
+        .input-helper { font-size: 12px; color: #666; margin-bottom: 8px; display: block; font-style: italic; }
 
-        /* Next Page Button */
-        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 15px; text-decoration: none; display: block; text-align: center; }
+        .pro-input { width: 100%; padding: 14px; border: 2px solid #e1e1e1; border-radius: 10px; font-size: 15px; transition: 0.3s; box-sizing: border-box; background: #fff; }
+        .pro-input:focus { border-color: #23a6d5; background: #f0faff; outline: none; box-shadow: 0 0 0 3px rgba(35, 166, 213, 0.1); }
+        
+        .pro-btn { background: #1a1a1a; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .pro-btn:hover { background: #000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        /* Contact Details */
-        .contact-box p { margin: 8px 0; font-size: 16px; }
+        /* Notification */
+        .notification-box { background: #fff8e1; border-left: 5px solid #ffb300; padding: 15px; border-radius: 8px; margin-bottom: 25px; display: none; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .bell-icon { font-size: 22px; margin-right: 15px; animation: swing 3s infinite ease-in-out; }
+        @keyframes swing { 0%,100%{transform:rotate(0deg)} 20%{transform:rotate(15deg)} 40%{transform:rotate(-10deg)} 60%{transform:rotate(5deg)} 80%{transform:rotate(-5deg)} }
 
-        /* Social Links Footer */
-        footer { background: #111; color: white; padding: 30px 20px; text-align: center; }
-        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
-        .social-btn { text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 13px; text-align: center; }
+        /* Features */
+        .feature-item { background: #f0f7ff; padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; font-weight: 600; color: #0277bd; display: flex; align-items: center; border-left: 4px solid #0288d1; transition: 0.2s; }
+        .feature-item::before { content: "✅"; margin-right: 10px; font-size: 14px; }
+
+        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 16px; border-radius: 10px; width: 100%; font-weight: bold; display: block; text-align: center; text-decoration: none; box-shadow: 0 4px 15px rgba(35, 213, 171, 0.3); }
+
+        /* Student Dashboard Styles */
+        #student-dashboard { display: none; }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .info-box { background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 5px solid #2196f3; }
+        .info-label { font-size: 12px; color: #555; font-weight: bold; }
+        .info-value { font-size: 18px; font-weight: bold; color: #333; margin-top: 5px; }
+        .homework-box { background: #fff8e1; padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800; margin-top: 15px; }
+
+        footer { background: #111; color: white; padding: 40px 20px; text-align: center; font-size: 13px; }
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .social-btn { text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; transition: 0.3s; }
         .tg { background: #0088cc; } .yt { background: #ff0000; } .ig { background: #e1306c; } .wa { background: #25d366; }
     </style>
 </head>
 <body>
 
+    <div id="loader-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">GURUKUL LOADING...</div>
+    </div>
+
+    <div id="welcome-text-overlay">
+        <div class="big-welcome">🎉 Welcome to <br> Gurukul School Dhankoli</div>
+    </div>
+
     <div class="rainbow-header">
         <div class="header-content">
-            <img src="https://i.ibb.co/xtXjCfQ8/1000100274.jpg" class="logo-img" alt="Gurukul Logo">
+            <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" class="logo-img" alt="Gurukul Logo">
             <div class="school-name">Gurukul School Dhankoli</div>
         </div>
     </div>
 
     <nav>
         <a href="index.html" class="active-link">Home</a>
-        <a href="about.html">About Us</a>
+        <a href="about.html">About</a>
         <a href="gallery.html">Gallery</a>
         <a href="admission.html">Admission</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <div class="content-container">
+        
+        <div id="notif-box" class="notification-box">
+            <div class="bell-icon">🔔</div>
+            <div id="notif-text" style="font-size: 14px; color: #555;">Loading Notice...</div>
+        </div>
+
         <div class="card">
             <img src="https://i.postimg.cc/zBgfQZcR/1764775527008.jpg" class="main-photo" alt="School Building">
             
-            <h2>Hamari Visheshtayein</h2>
-            <div class="feature-item">Sanskar aur Shiksha ka Sahi Sangam</div>
-            <div class="feature-item">Sant or sudh watawern</div>
-            <div class="feature-item">Expert aur Dedicated Teachers</div>
-            <div class="feature-item">Computer Lab aur Smart Classes</div>
+            <h2>🌟 Hamari Visheshtayein</h2>
+            <div class="feature-item">Sanskar aur Shiksha ka Sangam</div>
+            <div class="feature-item">Shant aur Shuddh Vatavaran</div>
+            <div class="feature-item">Expert & Dedicated Teachers</div>
+            <div class="feature-item">Computer Lab & Smart Classes</div>
             <div class="feature-item">Khel-Kood ke liye Bada Maidan</div>
-            <div class="feature-item">CCTV se Surakshit Campus</div>
-
-            <a href="about.html" class="next-btn">Agle Page Par Jayein (About Us) ➔</a>
+            <div class="feature-item">CCTV Camera se surakshit campus</div>
+            <a href="about.html" class="next-btn">View More About Us ➔</a>
         </div>
 
-        <div class="card contact-box">
-            <h2>Sampark Details</h2>
-            <p><b>📍Address:</b> Dhankoli (Maulasar), Rajasthan</p>
-            <p><b>📞 Chairman(H.S.Royal):</b> 9887071127</p>
-            <p><b>📞 Director(R.C.Royal):</b> 9772564359</p>
-            <p><b>📞 Treasurer(O.P.Royal):</b> 9887906618</p>
+        <div id="login-card" class="card">
+            <h2>🎓 Student Portal</h2>
+            <div class="login-wrapper">
+                <div class="login-icon">👤</div>
+                <p style="color:#777; font-size:14px; margin-top:0;">Check Result, Rank & Homework</p>
+                
+                <div class="input-group">
+                    <label class="input-label">Mobile Number</label>
+                    <span class="input-helper">(The 10-digit mobile number used during school registration)</span>
+                    <input type="tel" id="userMobile" class="pro-input" placeholder="Enter registered mobile number">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Password</label>
+                    <input type="password" id="userPass" class="pro-input" placeholder="Enter your password">
+                </div>
+
+                <button id="loginBtn" onclick="handleLogin()" class="pro-btn">LOGIN NOW</button>
+                <p id="status-msg" style="color:red; margin-top:10px; display:none; font-weight:bold;"></p>
+            </div>
+        </div>
+
+        <div id="student-dashboard" class="card">
+            <h2 style="color:#23a6d5;">Welcome, <span id="s-name">Student</span>! 🎉</h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="info-label">🏆 Class Rank</div>
+                    <div class="info-value" id="s-rank">--</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-label">📊 Test Score</div>
+                    <div class="info-value" id="s-score">--</div>
+                </div>
+            </div>
+
+            <div class="homework-box">
+                <div class="info-label">📝 Today's Homework</div>
+                <div class="info-value" id="s-homework">No homework uploaded.</div>
+            </div>
+
+            <button class="pro-btn" onclick="location.reload()" style="background:#d32f2f; margin-top:20px;">Logout</button>
+        </div>
+
+        <div class="card">
+            <h2>📞 Contact us.</h2>
+            <p style="margin:10px 0; font-size:15px;"><b>Address:</b> Dhankoli (Maulasar), Rajasthan</p>
+            <div style="background:#f9f9f9; padding:15px; border-radius:10px; border-left:4px solid #333;">
+                <p style="margin:5px 0;">👤 <b>Director(R.C.Royal):</b> 9772564359</p>
+                <p style="margin:5px 0;">👤 <b>Chairman(H.S.Royal):</b> 9887071127</p>
+                <p style="margin:5px 0;">👤 <b>Treasurer(O.P.Royal):</b> 9887906618</p>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>Hmare Saath Judyein:</p>
+        <p>Follow Us On Social Media:</p>
         <div class="social-grid">
             <a href="https://t.me/+ES12goFlHcphNjg1" class="social-btn tg">Telegram</a>
             <a href="https://youtube.com/@g.s.s.s.dhankholi" class="social-btn yt">YouTube</a>
             <a href="https://www.instagram.com/gurukul_school_dhankoli" class="social-btn ig">Instagram</a>
             <a href="https://whatsapp.com/channel/0029Vb6qqNx5PO0tC5RMGq0p" class="social-btn wa">WhatsApp</a>
         </div>
-        <p style="font-size: 11px; opacity: 0.5; margin-top: 15px;">© 2026 Gurukul School Dhankoli(criated by piyush royal) | All Rights Reserved</p>
+        <p style="opacity: 0.6; margin-top: 20px;">© 2026 Gurukul School Dhankoli<br>Developed by Piyush Royal</p>
     </footer>
 
+    <script>
+        // --- YOUR BACKEND LINK ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCsxLosSJgur2PW-9VOun8J93Y1zNYYaFnXFCBbJnUiAbk2TNi_IAvKk9aKB3Yb77lkQ/exec";
 
+        window.addEventListener('load', function() {
+            // 1. Fetch Notification
+            fetch(SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                if(data.notification && data.notification !== "") {
+                    document.getElementById("notif-box").style.display = "flex";
+                    document.getElementById("notif-text").innerHTML = "<b style='color:#d9534f;'>Update:</b> " + data.notification;
+                }
+            });
+
+            // 2. Animations (Cube -> Welcome -> Fireworks)
+            setTimeout(function() {
+                document.getElementById('loader-overlay').style.opacity = '0';
+                
+                var welcomeOverlay = document.getElementById('welcome-text-overlay');
+                welcomeOverlay.style.display = 'flex';
+                
+                var duration = 2000;
+                var end = Date.now() + duration;
+                (function frame() {
+                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00'] });
+                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00'] });
+                    if (Date.now() < end) requestAnimationFrame(frame);
+                }());
+
+                setTimeout(function(){ 
+                    document.getElementById('loader-overlay').style.display = 'none';
+                    setTimeout(function(){
+                         welcomeOverlay.style.display = 'none';
+                    }, 2500);
+                }, 800);
+
+            }, 2500);
+        });
+
+        // 3. Handle Login
+        function handleLogin() {
+            var m = document.getElementById("userMobile").value;
+            var p = document.getElementById("userPass").value;
+            var btn = document.getElementById("loginBtn");
+            var msg = document.getElementById("status-msg");
+
+            if(!m || !p) { alert("Please enter Mobile and Password"); return; }
+
+            // Show Loading State
+            btn.innerText = "CHECKING...";
+            btn.style.opacity = "0.7";
+            msg.style.display = "none";
+
+            fetch(SCRIPT_URL + "?mobile=" + m + "&pass=" + p)
+            .then(res => res.json())
+            .then(data => {
+                btn.innerText = "LOGIN NOW";
+                btn.style.opacity = "1";
+
+                if(data.status === "success") {
+                    // Success! Switch to Dashboard
+                    document.getElementById("login-card").style.display = "none";
+                    document.getElementById("student-dashboard").style.display = "block";
+                    
+                    // Update Data
+                    document.getElementById("s-name").innerText = data.name;
+                    document.getElementById("s-rank").innerText = data.rank;
+                    document.getElementById("s-score").innerText = data.score;
+                    document.getElementById("s-homework").innerText = data.homework;
+
+                    // More Fireworks!
+                    confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+                } else {
+                    msg.style.display = "block";
+                    msg.innerText = "❌ Incorrect Mobile or Password";
+                }
+            })
+            .catch(err => {
+                btn.innerText = "LOGIN NOW";
+                btn.style.opacity = "1";
+                alert("Internet connection error.");
+            });
+        }
+    </script>
+
+</body>
+</html>
