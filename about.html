@@ -1,64 +1,122 @@
- </body>
-</html>
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Gurukul School</title>
+    <title>About Us - Gurukul School Dhankoli</title>
+    
     <style>
-        /* Rainbow Wave Animation */
-        @keyframes waveAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* --- 1. COMMON SETTINGS (Home Page Jaisa) --- */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; overflow-x: hidden; }
 
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; line-height: 1.6; }
+        /* --- 2. 3D CUBE LOADER (Vaisa hi jaisa Home par hai) --- */
+        #loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease-out; }
+        .spinner { width: 60px; height: 60px; background-color: #23a6d5; animation: rotateCube 1.2s infinite ease-in-out; }
+        @keyframes rotateCube { 0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); background-color: #23a6d5; } 50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); background-color: #e73c7e; } 100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); background-color: #ee7752; } }
+        .loading-text { margin-top: 20px; font-weight: bold; color: #555; letter-spacing: 2px; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        /* Rainbow Header */
+        /* --- 3. RAINBOW HEADER --- */
+        @keyframes waveAnimation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
         .rainbow-header {
-            height: 110px;
+            height: 120px;
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: waveAnimation 10s ease infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             border-bottom: 3px solid white;
         }
 
         .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; background: white; margin-bottom: 5px; }
-        .school-name { font-size: 20px; font-weight: bold; }
+        .logo-img { width: 75px; height: 75px; border-radius: 50%; border: 3px solid white; background: white; margin-bottom: 5px; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .school-name { font-size: 22px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 0.5px; }
 
-        /* Navigation */
-        nav { background: #1a1a1a; display: flex; overflow-x: auto; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: bold; font-size: 14px; }
-        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; }
+        /* --- 4. NAVIGATION --- */
+        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav a { color: white; padding: 15px 25px; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { background: #333; }
+        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; background: #222; }
 
+        /* --- 5. MAIN CONTENT --- */
         .container { padding: 25px; max-width: 800px; margin: auto; }
-        .card { background: white; border-radius: 15px; padding: 25px; margin-bottom: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; }
+        .card { background: white; border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #fff; position: relative; overflow: hidden; }
         
-        h2 { color: #0056b3; border-left: 5px solid #ffcc00; padding-left: 10px; margin-bottom: 15px; }
+        /* Decoration for Cards */
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: linear-gradient(to bottom, #23a6d5, #23d5ab); }
+
+        h2 { color: #2c3e50; font-size: 24px; font-weight: 800; margin-bottom: 20px; }
+        p { font-size: 16px; color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .highlight-badge { background: #e3f2fd; color: #1565c0; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; display: inline-block; margin-bottom: 10px; }
+
+        /* Vision Quote Box */
+        .vision-box {
+            background: #fff8e1;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: #444;
+            font-size: 17px;
+            position: relative;
+        }
+        .vision-box::before { content: "❝"; font-size: 40px; color: #ffc107; position: absolute; top: -10px; left: 10px; opacity: 0.5; }
+
+        /* --- 6. VIP MANAGEMENT SECTION --- */
+        .mgmt-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
         
-        .vision-text { font-style: italic; color: #555; font-size: 18px; text-align: center; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 15px 0; margin: 20px 0; }
+        .mgmt-card {
+            display: flex; align-items: center;
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .mgmt-card:hover { transform: translateY(-3px); border-color: #23a6d5; }
 
-        .bus-section img { width: 100%; border-radius: 12px; margin-top: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        
-        .level-badge { background: #28a745; color: white; padding: 5px 15px; border-radius: 50px; font-size: 14px; display: inline-block; margin-bottom: 10px; }
+        .mgmt-icon {
+            width: 50px; height: 50px;
+            background: #e1f5fe; color: #0288d1;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-right: 15px;
+            border: 2px solid #b3e5fc;
+        }
+        .mgmt-info h3 { margin: 0; font-size: 18px; color: #333; }
+        .mgmt-info span { font-size: 13px; color: #0288d1; font-weight: bold; text-transform: uppercase; }
 
-        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-top: 20px; }
+        /* Bus Image */
+        .bus-frame {
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border-radius: 12px;
+            width: 100%;
+            transition: transform 0.3s;
+        }
+        .bus-frame:hover { transform: scale(1.02); }
 
-        footer { background: #111; color: white; padding: 20px; text-align: center; font-size: 12px; }
+        /* Footer & Button */
+        .next-btn { background: #1a1a1a; color: white; padding: 16px; border-radius: 10px; width: 100%; font-weight: bold; display: block; text-align: center; text-decoration: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: 0.3s; }
+        .next-btn:hover { background: #333; transform: translateY(-2px); }
+
+        footer { background: #111; color: white; padding: 40px 20px; text-align: center; font-size: 13px; margin-top: 20px; }
     </style>
 </head>
 <body>
 
+    <div id="loader-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">ABOUT US...</div>
+    </div>
+
     <div class="rainbow-header">
         <div class="header-content">
-            <img src="https://i.ibb.co/xtXjCfQ8/1000100274.jpg" class="logo-img" alt="Logo">
+            <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" class="logo-img" alt="Logo">
             <div class="school-name">Gurukul School Dhankoli</div>
         </div>
     </div>
@@ -68,43 +126,88 @@
         <a href="about.html" class="active-link">About Us</a>
         <a href="gallery.html">Gallery</a>
         <a href="admission.html">Admission</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <div class="container">
+        
         <div class="card">
-            <span class="level-badge">Senior Secondary Level</span>
-          
- <h2>हमारे बारे में</h2>
-            <p>धनकोली (मौलासर) के हृदय में स्थित, <b>गुरुकुल स्कूल</b> की स्थापना वर्ष 2026 में शिक्षा के क्षेत्र में एक नया मापदंड स्थापित करने के लिए की गई है। हमारा विद्यालय केवल एक इमारत नहीं, बल्कि संस्कारों की एक पाठशाला है।</p>
-            
-            <div class="vision-text">
-                "हमारा लक्ष्य छात्रों को केवल साक्षर बनाना नहीं, बल्कि उन्हें राष्ट्र के प्रति समर्पित और सफल नागरिक बनाना है।"
+            <span class="highlight-badge">Estd. 2026</span>
+            <h2>🏫 हमारा परिचय</h2>
+            <p><b>गुरुकुल स्कूल (धनकोली)</b> की नींव एक ऐसे सपने के साथ रखी गई है जहाँ शिक्षा का मतलब केवल किताबें रटना नहीं, बल्कि जीवन को समझना है।</p>
+            <p>मौलासर क्षेत्र में स्थित यह विद्यालय आधुनिक सुविधाओं और पारंपरिक संस्कारों का एक अनूठा संगम है। यहाँ हम बच्चों को <b>Senior Secondary Level</b> तक की बेहतरीन शिक्षा प्रदान करते हैं।</p>
+
+            <div class="vision-box">
+                "हमारा उद्देश्य एक ऐसे समाज का निर्माण करना है जहाँ हमारे छात्र न केवल सफल प्रोफेशनल बनें, बल्कि एक अच्छे इंसान भी बनें।"
             </div>
-
-            <h3>हमारा विजन (Vision)</h3>
-            <p>हम आधुनिक विज्ञान और अपनी सांस्कृतिक जड़ों के बीच एक सेतु (Bridge) का निर्माण कर रहे हैं। सीनियर सेकेंडरी स्तर की शिक्षा के साथ, हम छात्रों को बोर्ड परीक्षाओं और भविष्य की प्रतियोगी परीक्षाओं के लिए तैयार करते हैं।</p>
-        </div>
-
-        <div class="card bus-section">
-            <h2>सुरक्षित परिवहन सुविधा</h2>
-            <p>हमारे पास विद्यार्थियों के लिए अत्याधुनिक और सुरक्षित बस सुविधा उपलब्ध है। हर बस अनुभवी चालकों और सुरक्षा मानकों से लैस है।</p>
-            <img src="https://i.ibb.co/kgx2W4sR/Screenshot-20251225-151046-Canva.jpg" alt="School Bus">
         </div>
 
         <div class="card">
-            <h2>प्रबंधन (Management)</h2>
-            <p>विद्यालय का संचालन अनुभवी शिक्षाविदों और समाजसेवियों की देखरेख में हो रहा है:</p>
-            <ul>
-                <li><b>Chairman:</b> एच. एस. रॉयल</li>   <li><b>Director:</b> आर. सी. रॉयल</li>
-            </ul>
+            <h2>🤝 हमारा नेतृत्व (Management)</h2>
+            <p>विद्यालय का संचालन अनुभवी और समर्पित व्यक्तित्वों द्वारा किया जा रहा है:</p>
+            
+            <div class="mgmt-grid">
+                <div class="mgmt-card">
+                    <div class="mgmt-icon">👔</div>
+                    <div class="mgmt-info">
+                        <span>Chairman</span>
+                        <h3>Mr. H.S. Royal</h3>
+                    </div>
+                </div>
+
+                <div class="mgmt-card">
+                    <div class="mgmt-icon">🎓</div>
+                    <div class="mgmt-info">
+                        <span>Director</span>
+                        <h3>Mr. R.C. Royal</h3>
+                    </div>
+                </div>
+
+                <div class="mgmt-card">
+                    <div class="mgmt-icon">💼</div>
+                    <div class="mgmt-info">
+                        <span>Treasurer</span>
+                        <h3>Mr. O.P. Royal</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="highlight-badge" style="background:#e8f5e9; color:#2e7d32;">Facilities</span>
+            <h2>🚌 सुरक्षित वाहन सुविधा</h2>
+            <p>छात्रों की सुरक्षा हमारे लिए सर्वोपरि है। स्कूल के पास अपनी खुद की बसें हैं जो आसपास के सभी गांवों से पिक-अप और ड्रॉप की सुविधा देती हैं।</p>
+            
+            <img src="https://i.ibb.co/kgx2W4sR/Screenshot-20251225-151046-Canva.jpg" class="bus-frame" alt="School Bus">
+            
+            <div style="margin-top:20px; background:#f9f9f9; padding:15px; border-radius:10px;">
+                <b>अन्य सुविधाएँ:</b>
+                <ul style="margin:10px 0 0 20px; color:#555;">
+                    <li>CCTV कैमरा से निगरानी</li>
+                    <li>शुद्ध RO पानी</li>
+                    <li>विशाल खेल का मैदान</li>
+                </ul>
+            </div>
         </div>
 
         <a href="gallery.html" class="next-btn">स्कूल की गैलरी देखें ➔</a>
     </div>
 
     <footer>
-        © 2026 Gurukul School Dhankoli(criated by piyush royal) | Estd. 2026
+        <p>© 2026 Gurukul School Dhankoli | All Rights Reserved</p>
+        <p style="opacity: 0.6; margin-top: 10px; font-size:11px;">Designed by Piyush Royal</p>
     </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader-overlay').style.opacity = '0';
+                setTimeout(function(){ 
+                    document.getElementById('loader-overlay').style.display = 'none';
+                }, 800);
+            }, 1000); // 1 second loader
+        });
+    </script>
 
 </body>
 </html>
