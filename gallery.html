@@ -3,89 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery - Gurukul School</title>
+    <title>Gallery - Gurukul School Dhankoli</title>
     <style>
-        /* Rainbow Wave Animation */
-        @keyframes waveAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #ffffff; color: #333; }
-
-        .rainbow-header {
-            height: 110px;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: waveAnimation 10s ease infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 3px solid white;
-        }
-
-        .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
-        .logo-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid white; background: white; margin-bottom: 5px; }
-        .school-name { font-size: 20px; font-weight: bold; }
-
-        nav { background: #1a1a1a; display: flex; overflow-x: auto; position: sticky; top: 0; z-index: 1000; }
-        nav a { color: white; padding: 15px 20px; text-decoration: none; font-weight: bold; font-size: 14px; }
-        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; }
-
-        .container { padding: 25px; max-width: 900px; margin: auto; }
+        /* --- STYLES --- */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background: #f4f7f6; color: #333; overflow-x: hidden; }
         
-        h2 { color: #0056b3; text-align: center; margin-bottom: 30px; position: relative; }
-        h2::after { content: ''; width: 60px; height: 4px; background: #ffcc00; display: block; margin: 10px auto; border-radius: 2px; }
+        /* Loader */
+        #loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 10000; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity 0.8s ease-out; }
+        .spinner { width: 60px; height: 60px; background-color: #23a6d5; animation: rotateCube 1.2s infinite ease-in-out; }
+        @keyframes rotateCube { 0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); background-color: #23a6d5; } 50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); background-color: #e73c7e; } 100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); background-color: #ee7752; } }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
+        /* Header */
+        .rainbow-header { height: 120px; background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); background-size: 400% 400%; animation: wave 10s infinite; display: flex; align-items: center; justify-content: center; border-bottom: 3px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        @keyframes wave { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
+        .logo-img { width: 75px; height: 75px; border-radius: 50%; border: 3px solid white; background: white; margin-bottom: 5px; object-fit: cover; }
+        .school-name { font-size: 22px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            height: 250px;
-            border: 2px solid #eee;
-        }
+        /* Nav */
+        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; }
+        nav a { color: white; padding: 15px 25px; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
+        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; background: #222; }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+        /* Gallery Grid */
+        .container { padding: 25px; max-width: 1000px; margin: auto; min-height: 500px; }
+        h2 { text-align: center; color: #2c3e50; margin-bottom: 30px; font-weight: 800; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        
+        .gallery-item { position: relative; border-radius: 16px; overflow: hidden; height: 280px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 4px solid white; transition: 0.3s; background: #eee; }
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        
+        .img-caption { position: absolute; bottom: 0; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: white; padding: 15px; text-align: center; font-weight: bold; }
 
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
+        /* Empty State */
+        .loading-msg { text-align: center; color: #777; font-style: italic; grid-column: 1 / -1; font-weight: bold; margin-top: 50px; }
 
-        .img-caption {
-            position: absolute;
-            bottom: 0;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 18px; border: none; border-radius: 10px; width: 100%; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: block; text-align: center; margin-top: 30px; }
-
-        footer { background: #111; color: white; padding: 20px; text-align: center; font-size: 12px; margin-top: 40px; }
+        footer { background: #111; color: white; padding: 40px 20px; text-align: center; font-size: 13px; margin-top: 40px; }
     </style>
 </head>
 <body>
 
+    <div id="loader-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text">LOADING GALLERY...</div>
+    </div>
+
     <div class="rainbow-header">
         <div class="header-content">
-            <img src="https://i.ibb.co/xtXjCfQ8/1000100274.jpg" class="logo-img" alt="Logo">
+            <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" class="logo-img" alt="Logo">
             <div class="school-name">Gurukul School Dhankoli</div>
         </div>
     </div>
@@ -95,34 +63,63 @@
         <a href="about.html">About Us</a>
         <a href="gallery.html" class="active-link">Gallery</a>
         <a href="admission.html">Admission</a>
+        <a href="contact.html">Contact</a>
     </nav>
 
     <div class="container">
-        <h2>स्कूल की झलकियां</h2>
+        <h2>📸 स्कूल की झलकियां</h2>
         
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://i.postimg.cc/zBgfQZcR/1764775527008.jpg" alt="School Building">
-                <div class="img-caption">आधुनिक विद्यालय भवन</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://i.ibb.co/RG7n4rtH/1000100412.jpg" alt="School Bus Facility">
-                <div class="img-caption">सुरक्षित स्कूल बस सुविधा</div>
-            </div>
-
-            <div class="gallery-item">
-                <img src="https://i.ibb.co/1GjbGz3T/1000100274.jpg" alt="Campus View">
-                <div class="img-caption">भव्य विद्यालय परिसर</div>
-            </div>
+        <div id="dynamic-gallery" class="gallery-grid">
+            <div class="loading-msg">Connecting to Google Sheet...</div>
         </div>
 
-        <a href="admission.html" class="next-btn">अगला स्टेप: ऑनलाइन प्रवेश ➔</a>
     </div>
 
     <footer>
-        © 2026 Gurukul School Dhankoli(Created by :- Piyush Royal) | Gallery
+        <p>© 2026 Gurukul School Dhankoli</p>
+        <p style="opacity: 0.6; margin-top: 10px; font-size:11px;">Designed by Piyush Royal</p>
     </footer>
+
+    <script>
+        // --- NEW UPDATED LINK ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby339sGl9mp1F3G3mzP_ZmfE9iB5Yj1y5XfA6SHO2dkPhB8cPcu3Ajj_H7grAON7sZxSQ/exec";
+
+        window.onload = function() {
+            // 1. Hide Loader
+            setTimeout(function() {
+                document.getElementById('loader-overlay').style.opacity = '0';
+                setTimeout(function(){ 
+                    document.getElementById('loader-overlay').style.display = 'none';
+                }, 800);
+            }, 1000);
+
+            // 2. Fetch Photos
+            fetch(SCRIPT_URL + "?type=gallery")
+            .then(response => response.json())
+            .then(data => {
+                const galleryContainer = document.getElementById("dynamic-gallery");
+                
+                if (data.photos && data.photos.length > 0) {
+                    galleryContainer.innerHTML = ""; // Clear message
+
+                    data.photos.forEach(photo => {
+                        const item = document.createElement("div");
+                        item.className = "gallery-item";
+                        item.innerHTML = `
+                            <img src="${photo.link}" alt="${photo.text}">
+                            <div class="img-caption">${photo.text}</div>
+                        `;
+                        galleryContainer.appendChild(item);
+                    });
+                } else {
+                    galleryContainer.innerHTML = "<div class='loading-msg'>No photos found in Sheet.<br>Please add links in 'Gallery' tab.</div>";
+                }
+            })
+            .catch(error => {
+                document.getElementById("dynamic-gallery").innerHTML = "<div class='loading-msg'>Error loading photos.</div>";
+            });
+        };
+    </script>
 
 </body>
 </html>
