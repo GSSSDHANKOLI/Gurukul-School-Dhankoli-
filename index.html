@@ -3,371 +3,380 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gurukul School Dhankoli</title>
     
-    <meta name="google-site-verification" content="DNWwJ8-8T5Fs6QMP_pYaPeKTNS_B2smrtnFIEXtRHpo" />
-    
-    <meta name="description" content="Gurukul School Dhankoli (GSSS) Official Website. Best School in Dhankoli offering modern education, smart classes, and sanskar. Check results and homework online.">
-    <meta name="keywords" content="Gurukul School Dhankoli, GSSS Dhankoli, Best School in Dhankoli, Gurukul School Result, Gurukul Dhankoli Maulasar, R.C. Royal School">
-    
-    <title>Gurukul School Dhankoli - Home</title>
+    <meta name="description" content="Gurukul School Dhankoli Official Website">
+    <meta property="og:title" content="Gurukul School Dhankoli" />
+    <meta property="og:image" content="https://i.ibb.co/HTjCh8gd/1000100841.jpg" />
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    
+
     <style>
-        /* --- DISCO NOTIFICATION ANIMATION --- */
-        @keyframes discoColor {
-            0% { background-color: #fff176; border-color: #fdd835; } 
-            20% { background-color: #ff8a65; border-color: #ff5722; } 
-            40% { background-color: #e57373; border-color: #f44336; } 
-            60% { background-color: #f06292; border-color: #e91e63; } 
-            80% { background-color: #4fc3f7; border-color: #03a9f4; } 
-            100% { background-color: #aed581; border-color: #8bc34a; } 
+        /* --- GLOBAL & FONTS --- */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; color: #333; scroll-behavior: smooth; }
+        a { text-decoration: none; }
+        
+        /* --- 1. LOADER (COLORFUL GLOBE 🌐) --- */
+        #loader { 
+            position: fixed; inset: 0; background: #fff; z-index: 9999; 
+            display: flex; align-items: center; justify-content: center; flex-direction: column; 
+            transition: opacity 0.8s ease-out;
+        }
+        
+        .globe-emoji {
+            font-size: 80px; /* Bada Size */
+            animation: spinColor 0.6s linear infinite; /* Fast Speed */
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
+            cursor: default;
         }
 
-        /* Rainbow Wave Animation */
-        @keyframes waveAnimation {
+        /* 4 Bar Gumna + Rang Badlna Animation */
+        @keyframes spinColor {
+            0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+            100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 15px; font-weight: bold; font-size: 18px;
+            background: linear-gradient(90deg, red, blue, green, orange);
+            -webkit-background-clip: text; color: transparent;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+
+        /* --- 2. RAINBOW HEADER (Rambo Style) --- */
+        .main-header {
+            /* Rainbow Gradient */
+            background: linear-gradient(-45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 400% 400%;
+            animation: rainbowFlow 8s ease infinite; /* Chalta hua rainbow */
+            padding: 20px; text-align: center; color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        @keyframes rainbowFlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; overflow-x: hidden; }
+        .logo-container img { width: 80px; height: 80px; border-radius: 50%; border: 3px solid white; background: white; }
+        .school-title { font-size: 24px; font-weight: bold; margin-top: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-        /* --- 1. 3D CUBE LOADER OVERLAY --- */
-        #loader-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff; z-index: 10000;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: opacity 0.8s ease-out;
-        }
+        /* --- NAVIGATION --- */
+        .navbar { background: #222; overflow-x: auto; white-space: nowrap; display: flex; box-shadow: 0 2px 5px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 1000; }
+        .navbar a { color: white; padding: 15px 20px; display: block; font-size: 14px; font-weight: 600; transition: 0.3s; }
+        .navbar a:hover { background: #444; }
+        .navbar a.active { color: #f1c40f; border-bottom: 3px solid #f1c40f; }
+        .navbar a.app-link { background: #4caf50; color: white; }
 
-        .spinner {
-            width: 60px; height: 60px;
-            background-color: #23a6d5;
-            animation: rotateCube 1.2s infinite ease-in-out;
-        }
-
-        @keyframes rotateCube {
-            0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); background-color: #23a6d5; }
-            50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); background-color: #e73c7e; }
-            100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); background-color: #ee7752; }
-        }
-
-        .loading-text { margin-top: 20px; font-weight: bold; color: #555; letter-spacing: 2px; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-
-        /* --- 2. WELCOME CELEBRATION TEXT --- */
-        #welcome-text-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999; display: none;
-            flex-direction: column; justify-content: center; align-items: center;
-        }
-        .big-welcome { 
-            font-size: 40px; font-weight: 900; color: #fff; 
-            text-shadow: 0 0 20px #000, 0 0 10px #23a6d5;
-            text-align: center; transform: scale(0);
-            animation: popUp 0.5s forwards;
-        }
-        @keyframes popUp { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-
-        /* Header Styles */
-        .rainbow-header {
-            height: 110px;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: waveAnimation 10s ease infinite;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 3px solid white;
-        }
-
-        .header-content { display: flex; flex-direction: column; align-items: center; color: white; }
-        .logo-img { width: 65px; height: 65px; border-radius: 50%; border: 3px solid white; background: white; margin-bottom: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); object-fit: cover; }
-        .school-name { font-size: 22px; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 0.5px; }
-
-        nav { background: #1a1a1a; display: flex; overflow-x: auto; white-space: nowrap; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        nav a { color: white; padding: 15px 25px; text-decoration: none; font-weight: 600; font-size: 14px; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { background: #333; }
-        .active-link { color: #ffcc00; border-bottom: 3px solid #ffcc00; background: #222; }
-
-        .content-container { padding: 25px; max-width: 800px; margin: auto; }
-        .card { background: white; border-radius: 16px; padding: 25px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #fff; }
-        .main-photo { width: 100%; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-
-        h2 { color: #2c3e50; font-size: 22px; border-left: 5px solid #23a6d5; padding-left: 15px; margin-bottom: 25px; font-weight: 700; }
+        /* --- MARQUEE --- */
+        .marquee-container { background: #e91e63; color: white; padding: 10px; display: flex; align-items: center; }
+        .marquee-icon { font-size: 20px; margin-right: 10px; animation: ring 2s infinite; }
         
-        /* Login Box Styling */
-        .login-wrapper { background: linear-gradient(135deg, #ffffff 0%, #f9f9f9 100%); border: 1px solid #eee; border-top: 4px solid #23a6d5; border-radius: 15px; padding: 20px; text-align: center; }
-        .login-icon { font-size: 40px; margin-bottom: 10px; display: inline-block; background: #e0f7fa; width: 70px; height: 70px; line-height: 70px; border-radius: 50%; color: #006064; }
-        .input-group { text-align: left; margin-bottom: 15px; }
-        .input-label { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 5px; display: block; }
-        
-        /* Helper Text Style */
-        .input-helper { font-size: 12px; color: #666; margin-bottom: 8px; display: block; font-style: italic; }
+        /* --- CARDS & LAYOUT --- */
+        .container { padding: 20px; max-width: 600px; margin: auto; }
+        .card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .hero-img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
 
-        .pro-input { width: 100%; padding: 14px; border: 2px solid #e1e1e1; border-radius: 10px; font-size: 15px; transition: 0.3s; box-sizing: border-box; background: #fff; }
-        .pro-input:focus { border-color: #23a6d5; background: #f0faff; outline: none; box-shadow: 0 0 0 3px rgba(35, 166, 213, 0.1); }
-        
-        .pro-btn { background: #1a1a1a; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
-        .pro-btn:hover { background: #000; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        /* --- FEATURES --- */
+        .feature-box { background: #e3f2fd; padding: 12px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #2196f3; display: flex; align-items: center; color: #0d47a1; font-weight: 500; }
+        .check-icon { color: #4caf50; margin-right: 10px; font-weight: bold; font-size: 18px; }
 
-        /* --- UPDATED NOTIFICATION BOX (Disco + Scroll) --- */
-        .notification-box { 
-            border-left: 5px solid #000; 
-            padding: 15px; 
-            border-radius: 8px; 
-            margin-bottom: 25px; 
-            display: none; /* Hidden by default */
+        /* --- BUTTONS --- */
+        .btn-green { background: #4caf50; color: white; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; text-align: center; display: block; border: none; font-size: 16px; margin-top: 10px; }
+        .btn-black { background: #111; color: white; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; font-size: 16px; }
+        
+        /* --- LOGIN SECTION --- */
+        .login-header { text-align: center; margin-bottom: 20px; }
+        
+        /* --- UPDATED 3D COLORFUL ICON --- */
+        .user-icon-circle { 
+            width: 70px; 
+            height: 70px; 
+            /* Colorful 3D Gradient Background */
+            background: linear-gradient(135deg, #ff00cc, #3333ff, #00ccff);
+            border-radius: 50%; 
+            display: inline-flex; 
             align-items: center; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            animation: discoColor 2s infinite alternate; /* Speed wala colour change */
+            justify-content: center; 
+            font-size: 35px; 
+            color: white; /* White icon for contrast */
+            margin-bottom: 15px;
+            /* Strong 3D Shadow Effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), inset 0 2px 5px rgba(255,255,255,0.4);
+            /* Slight pulse animation to make it lively */
+            animation: iconPulse 3s infinite ease-in-out;
         }
-        .bell-icon { font-size: 22px; margin-right: 15px; animation: swing 3s infinite ease-in-out; }
-        @keyframes swing { 0%,100%{transform:rotate(0deg)} 20%{transform:rotate(15deg)} 40%{transform:rotate(-10deg)} 60%{transform:rotate(5deg)} 80%{transform:rotate(-5deg)} }
 
-        /* Features */
-        .feature-item { background: #f0f7ff; padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; font-weight: 600; color: #0277bd; display: flex; align-items: center; border-left: 4px solid #0288d1; transition: 0.2s; }
-        .feature-item::before { content: "✅"; margin-right: 10px; font-size: 14px; }
+        @keyframes iconPulse {
+            0% { transform: scale(1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+        }
 
-        .next-btn { background: linear-gradient(90deg, #23a6d5, #23d5ab); color: white; padding: 16px; border-radius: 10px; width: 100%; font-weight: bold; display: block; text-align: center; text-decoration: none; box-shadow: 0 4px 15px rgba(35, 213, 171, 0.3); }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; margin-bottom: 15px; box-sizing: border-box; font-size: 15px; background: #fafafa; }
 
-        /* Student Dashboard Styles */
-        #student-dashboard { display: none; }
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-        .info-box { background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 5px solid #2196f3; }
-        .info-label { font-size: 12px; color: #555; font-weight: bold; }
-        .info-value { font-size: 18px; font-weight: bold; color: #333; margin-top: 5px; }
-        .homework-box { background: #fff8e1; padding: 15px; border-radius: 10px; border-left: 5px solid #ff9800; margin-top: 15px; }
+        /* --- CONTACT SECTION --- */
+        .contact-header { display: flex; align-items: center; margin-bottom: 10px; font-size: 20px; font-weight: bold; color: #333; border-left: 4px solid #00acc1; padding-left: 10px; }
+        .contact-details-box { background: #f9f9f9; padding: 15px; border-radius: 10px; border-left: 5px solid #333; margin-top: 10px; }
+        .contact-row { margin: 8px 0; font-size: 14px; color: #444; display: flex; align-items: center; font-weight: 500; }
+        .contact-icon { color: #1976d2; margin-right: 8px; font-size: 16px; }
 
-        footer { background: #111; color: white; padding: 40px 20px; text-align: center; font-size: 13px; }
+        /* --- FOOTER (BLACK) --- */
+        .main-footer { background: #000000; padding: 40px 20px; color: white; text-align: center; margin-top: 20px; }
+        .footer-content { max-width: 600px; margin: 0 auto; }
         .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
-        .social-btn { text-decoration: none; color: white; padding: 12px; border-radius: 8px; font-weight: bold; text-align: center; transition: 0.3s; }
-        .tg { background: #0088cc; } .yt { background: #ff0000; } .ig { background: #e1306c; } .wa { background: #25d366; }
+        .social-btn { padding: 14px; border-radius: 8px; color: white; text-align: center; font-weight: bold; display: block; font-size: 14px; transition: 0.2s; }
+        
+        .tg { background: #0088cc; } .yt { background: #ff0000; } 
+        .ig { background: #e1306c; } .wa { background: #25d366; }
+        .social-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .footer-dev-text { margin-top: 30px; font-size: 13px; color: #ffffff; opacity: 0.7; letter-spacing: 0.5px; }
+
+        /* --- DASHBOARD STYLES --- */
+        #app-dashboard { display: none; background: #f0f2f5; min-height: 100vh; }
+        .dash-header { background: linear-gradient(180deg, #1976d2, #42a5f5); padding: 30px 20px 80px; text-align: center; color: white; border-radius: 0 0 30px 30px; }
+        .dash-container { padding: 0 20px; margin-top: -60px; position: relative; }
+        .dash-card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .stat-box { padding: 15px; border-radius: 12px; color: white; display: flex; flex-direction: column; }
+        .label { font-size: 11px; opacity: 0.9; } .val { font-size: 18px; font-weight: bold; }
+        .bg-g { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+        .bg-p { background: linear-gradient(135deg, #9c27b0, #ab47bc); }
+        .bg-r { background: linear-gradient(135deg, #f44336, #ef5350); }
+        .bg-o { background: linear-gradient(135deg, #ff9800, #ffa726); }
+        .bg-b { background: linear-gradient(135deg, #2196f3, #42a5f5); }
+        
+        @keyframes ring { 0%,100%{transform:rotate(0)} 10%,30%,50%,70%,90%{transform:rotate(10deg)} 20%,40%,60%,80%{transform:rotate(-10deg)} }
+
     </style>
 </head>
 <body>
 
-    <div id="loader-overlay">
-        <div class="spinner"></div>
-        <div class="loading-text">GURUKUL LOADING...</div>
+    <div id="loader">
+        <div class="globe-emoji">🌐</div>
+        <p class="loading-text">GURUKUL LOADING...</p>
     </div>
 
-    <div id="welcome-text-overlay">
-        <div class="big-welcome">🎉 Welcome to <br> Gurukul School Dhankoli</div>
-    </div>
-
-    <div class="rainbow-header">
-        <div class="header-content">
-            <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" class="logo-img" alt="Gurukul Logo">
-            <div class="school-name">Gurukul School Dhankoli</div>
-        </div>
-    </div>
-
-    <nav>
-        <a href="index.html" class="active-link">Home</a>
-        <a href="about.html">About</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="admission.html">Admission</a>
-        <a href="contact.html">Contact</a>
-        <!-- नया ऐप लिंक -->
-        <a href="https://drive.google.com/file/d/174ogAjVRBN2FofUG4DUYHB9CtG9fkLmi/view?usp=drivesdk" target="_blank">📱 School App</a>
-    </nav>
-
-    <div class="content-container">
+    <div id="home-screen">
         
-        <div id="notif-box" class="notification-box">
-            <div class="bell-icon">🔔</div>
-            <marquee id="notif-text" behavior="scroll" direction="left" scrollamount="6" style="font-size: 15px; color: #000; font-weight: bold; width: 100%;">
-                Loading Notice...
-            </marquee>
-        </div>
-
-        <div class="card">
-            <img src="https://i.postimg.cc/zBgfQZcR/1764775527008.jpg" class="main-photo" alt="School Building">
-            
-            <h2>🌟 Hamari Visheshtayein</h2>
-            <div class="feature-item">Sanskar aur Shiksha ka Sangam</div>
-            <div class="feature-item">Shant aur Shuddh Vatavaran</div>
-            <div class="feature-item">Expert & Dedicated Teachers</div>
-            <div class="feature-item">Computer Lab & Smart Classes</div>
-            <div class="feature-item">Khel-Kood ke liye Bada Maidan</div>
-            <div class="feature-item">CCTV Camera se surakshit campus</div>
-            <a href="about.html" class="next-btn">View More About Us ➔</a>
-        </div>
-
-        <!-- ऐप डाउनलोड सेक्शन -->
-        <div class="card">
-            <h2>📱 Download School App</h2>
-            <div style="text-align: center; padding: 20px;">
-                <div style="font-size: 50px; margin-bottom: 15px;">📲</div>
-                <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
-                    हमारा ऑफिशियल स्कूल ऐप डाउनलोड करें!<br>
-                    सभी अपडेट, नोटिस और होमवर्क सीधे ऐप में प्राप्त करें।
-                </p>
-                <a href="https://drive.google.com/file/d/174ogAjVRBN2FofUG4DUYHB9CtG9fkLmi/view?usp=drivesdk" 
-                   target="_blank" 
-                   class="pro-btn" 
-                   style="background: linear-gradient(90deg, #4CAF50, #2E7D32); display: inline-block; width: auto; padding: 15px 40px;">
-                    DOWNLOAD APP NOW
-                </a>
-                <p style="font-size: 12px; color: #888; margin-top: 15px;">
-                    (ंGurukul School Dhankoli)
-                </p>
+        <div class="main-header">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" alt="Logo">
             </div>
+            <div class="school-title">Gurukul School Dhankoli</div>
         </div>
 
-        <div id="login-card" class="card">
-            <h2>🎓 Student Portal</h2>
-            <div class="login-wrapper">
-                <div class="login-icon">👤</div>
-                <p style="color:#777; font-size:14px; margin-top:0;">Check Result, Rank & Homework</p>
+        <div class="navbar">
+            <a href="#" class="active">HOME</a>
+            <a href="#">ABOUT</a>
+            <a href="#">GALLERY</a>
+            <a href="#">ADMISSION</a>
+            <a href="#contact-section">CONTACT</a>
+            <a href="https://drive.google.com/file/d/174ogAjVRBN2FofUG4DUYHB9CtG9fkLmi/view?usp=drivesdk" target="_blank" class="app-link">DOWNLOAD APP</a>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee-icon">🔔</div>
+            <marquee id="notif-text" style="font-weight: bold;">Welcome to Gurukul School Official Website.</marquee>
+        </div>
+
+        <div class="container">
+            
+            <div class="card">
+                <img src="https://i.postimg.cc/zBgfQZcR/1764775527008.jpg" class="hero-img" alt="School">
+                <h3 style="color:#fbc02d; margin-top:0; border-left: 4px solid #fbc02d; padding-left: 10px;">🌟 Hamari Visheshtayein</h3>
                 
-                <div class="input-group">
-                    <label class="input-label">Mobile Number</label>
-                    <span class="input-helper">(The 10-digit mobile number used during school registration)</span>
-                    <input type="tel" id="userMobile" class="pro-input" placeholder="Enter registered mobile number">
-                </div>
-
-                <div class="input-group">
-                    <label class="input-label">Password</label>
-                    <input type="password" id="userPass" class="pro-input" placeholder="Enter your password">
-                </div>
-
-                <button id="loginBtn" onclick="handleLogin()" class="pro-btn">LOGIN NOW</button>
-                <p id="status-msg" style="color:red; margin-top:10px; display:none; font-weight:bold;"></p>
+                <div class="feature-box"><span class="check-icon">☑</span> Sanskar aur Shiksha ka Sangam</div>
+                <div class="feature-box"><span class="check-icon">☑</span> Shant aur Shuddh Vatavaran</div>
+                <div class="feature-box"><span class="check-icon">☑</span> Expert & Dedicated Teachers</div>
+                <div class="feature-box"><span class="check-icon">☑</span> Computer Lab & Smart Classes</div>
+                <div class="feature-box"><span class="check-icon">☑</span> CCTV Camera se surakshit campus</div>
             </div>
+
+            <div class="card" style="text-align:center;">
+                <h3 style="border-left: 4px solid #333; padding-left: 10px; display:inline-block;">📱 Download School App</h3>
+                <div style="font-size: 40px; margin: 15px 0;">📲</div>
+                <p style="color:#666; font-size:14px;">हमारा ऑफिशियल स्कूल ऐप डाउनलोड करें!<br>सभी अपडेट, नोटिस और होमवर्क सीधे ऐप में प्राप्त करें।</p>
+                <a href="https://drive.google.com/file/d/174ogAjVRBN2FofUG4DUYHB9CtG9fkLmi/view?usp=drivesdk" target="_blank" class="btn-green">DOWNLOAD APP NOW</a>
+                <p style="font-size:12px; color:#aaa; margin-top:5px;">(Gurukul School Dhankoli)</p>
+            </div>
+
+            <div id="login-section" class="card">
+                <div class="login-header">
+                    <h3 style="border-left: 4px solid #1976d2; padding-left: 10px; display:inline-block;">🎓 Student Portal</h3>
+                    <div style="display:block; margin: 15px 0;">
+                        <div class="user-icon-circle">👤</div>
+                    </div>
+                    <p style="color:#888; font-size:13px; margin:0;">Check Result, Rank & Homework</p>
+                </div>
+
+                <label style="font-weight:bold; font-size:14px; display:block; margin-bottom:5px;">Mobile Number</label>
+                <input type="tel" id="userMobile" class="form-input" placeholder="Enter registered mobile number">
+
+                <label style="font-weight:bold; font-size:14px; display:block; margin-bottom:5px;">Password</label>
+                <input type="password" id="userPass" class="form-input" placeholder="Enter your password">
+
+                <button id="loginBtn" onclick="handleLogin()" class="btn-black">LOGIN NOW</button>
+                <p id="error-msg" style="color:red; text-align:center; display:none; margin-top:10px; font-weight:bold;"></p>
+            </div>
+
+            <div id="contact-section" class="card">
+                <div class="contact-header">
+                    📞 Contact us.
+                </div>
+                <p style="font-size:14px; margin-top:10px; margin-left:5px;"><b>Address:</b> Dhankoli (Maulasar), Rajasthan</p>
+                
+                <div class="contact-details-box">
+                    <div class="contact-row"><span class="contact-icon">👤</span> <b>Director(R.C.Royal):</b> 9772564359</div>
+                    <div class="contact-row"><span class="contact-icon">👤</span> <b>Chairman(H.S.Royal):</b> 9887071127</div>
+                    <div class="contact-row"><span class="contact-icon">👤</span> <b>Treasurer(O.P.Royal):</b> 9887906618</div>
+                </div>
+            </div>
+
+        </div> <footer class="main-footer">
+            <div class="footer-content">
+                <p style="margin:0; font-size: 15px;">Follow Us On Social Media:</p>
+                <div class="social-grid">
+                    <a href="https://t.me/+ES12goFlHcphNjg1" class="social-btn tg">Telegram</a>
+                    <a href="https://youtube.com/@g.s.s.s.dhankholi" class="social-btn yt">YouTube</a>
+                    <a href="https://www.instagram.com/gurukul_school_dhankoli" class="social-btn ig">Instagram</a>
+                    <a href="https://whatsapp.com/channel/0029Vb6qqNx5PO0tC5RMGq0p" class="social-btn wa">WhatsApp</a>
+                </div>
+                
+                <div class="footer-dev-text">
+                    © 2026 Gurukul School Dhankoli<br>
+                    Developed by Piyush Royal
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <div id="app-dashboard">
+        <div class="dash-header">
+            <img src="https://i.ibb.co/HTjCh8gd/1000100841.jpg" style="width:60px; height:60px; border-radius:50%; border:2px solid white;">
+            <h3>Gurukul School</h3>
+            <p style="opacity:0.8; font-size:13px;">Student Dashboard</p>
         </div>
 
-        <div id="student-dashboard" class="card">
-            <h2 style="color:#23a6d5;">Welcome, <span id="s-name">Student</span>! 🎉</h2>
-            
-            <div class="info-grid">
-                <div class="info-box">
-                    <div class="info-label">🏆 Class Rank</div>
-                    <div class="info-value" id="s-rank">--</div>
+        <div class="dash-container">
+            <div class="dash-card">
+                <h2 style="color:#333;">Welcome, <span style="color:#1976d2;" id="s-name">Student</span>! 👋</h2>
+                
+                <div class="dash-grid">
+                    <div class="stat-box bg-g">
+                        <span class="label">CLASS</span>
+                        <span class="val" id="s-class">--</span>
+                    </div>
+                    <div class="stat-box bg-p">
+                        <span class="label">FATHER</span>
+                        <span class="val" id="s-fname">--</span>
+                    </div>
                 </div>
-                <div class="info-box">
-                    <div class="info-label">📊 Test Score</div>
-                    <div class="info-value" id="s-score">--</div>
+
+                <div class="dash-grid">
+                    <div class="stat-box bg-r">
+                        <span class="label">FEES</span>
+                        <span class="val" id="s-fees">₹0</span>
+                    </div>
+                    <div class="stat-box bg-o">
+                        <span class="label">RANK</span>
+                        <span class="val" id="s-rank">--</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="homework-box">
-                <div class="info-label">📝 Today's Homework</div>
-                <div class="info-value" id="s-homework">No homework uploaded.</div>
-            </div>
+                <div class="stat-box bg-b" style="width:auto; margin-bottom:15px;">
+                    <span class="label">TEST SCORE</span>
+                    <span class="val" id="s-score">--</span>
+                </div>
 
-            <button class="pro-btn" onclick="location.reload()" style="background:#d32f2f; margin-top:20px;">Logout</button>
-        </div>
+                <div style="background:#fffde7; border:2px dashed #fbc02d; padding:15px; border-radius:10px; margin-bottom:20px;">
+                    <b style="color:#f57f17;">📝 HOMEWORK:</b>
+                    <p id="s-hw" style="margin:5px 0;">Loading...</p>
+                </div>
 
-        <div class="card">
-            <h2>📞 Contact us.</h2>
-            <p style="margin:10px 0; font-size:15px;"><b>Address:</b> Dhankoli (Maulasar), Rajasthan</p>
-            <div style="background:#f9f9f9; padding:15px; border-radius:10px; border-left:4px solid #333;">
-                <p style="margin:5px 0;">👤 <b>Director(R.C.Royal):</b> 9772564359</p>
-                <p style="margin:5px 0;">👤 <b>Chairman(H.S.Royal):</b> 9887071127</p>
-                <p style="margin:5px 0;">👤 <b>Treasurer(O.P.Royal):</b> 9887906618</p>
+                <button onclick="doLogout()" class="btn-black" style="background:#d32f2f;">LOGOUT</button>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>Follow Us On Social Media:</p>
-        <div class="social-grid">
-            <a href="https://t.me/+ES12goFlHcphNjg1" class="social-btn tg">Telegram</a>
-            <a href="https://youtube.com/@g.s.s.s.dhankholi" class="social-btn yt">YouTube</a>
-            <a href="https://www.instagram.com/gurukul_school_dhankoli" class="social-btn ig">Instagram</a>
-            <a href="https://whatsapp.com/channel/0029Vb6qqNx5PO0tC5RMGq0p" class="social-btn wa">WhatsApp</a>
-        </div>
-        <p style="opacity: 0.6; margin-top: 20px;">© 2026 Gurukul School Dhankoli<br>Developed by Piyush Royal</p>
-    </footer>
 
     <script>
-        // --- NEW UPDATED BACKEND LINK ---
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby339sGl9mp1F3G3mzP_ZmfE9iB5Yj1y5XfA6SHO2dkPhB8cPcu3Ajj_H7grAON7sZxSQ/exec";
+        const API = "https://script.google.com/macros/s/AKfycby6h7RUex8-rWWn5cfo7NW5Tq9vtJHsYcgPAOtWZAHvnr4YwZY8i9ziH-YkBCgVwtQJeA/exec";
 
-        window.addEventListener('load', function() {
-            // 1. Fetch Notification
-            fetch(SCRIPT_URL)
-            .then(res => res.json())
-            .then(data => {
-                if(data.notification && data.notification !== "") {
-                    document.getElementById("notif-box").style.display = "flex";
-                    // Using innerHTML to allow HTML if needed, but injecting into marquee
-                    document.getElementById("notif-text").innerHTML = data.notification;
-                }
-            });
-
-            // 2. Animations (Cube -> Welcome -> Fireworks)
-            setTimeout(function() {
-                document.getElementById('loader-overlay').style.opacity = '0';
-                
-                var welcomeOverlay = document.getElementById('welcome-text-overlay');
-                welcomeOverlay.style.display = 'flex';
-                
-                var duration = 2000;
-                var end = Date.now() + duration;
-                (function frame() {
-                    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00'] });
-                    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff0000', '#00ff00', '#0000ff', '#ffff00'] });
-                    if (Date.now() < end) requestAnimationFrame(frame);
-                }());
-
-                setTimeout(function(){ 
-                    document.getElementById('loader-overlay').style.display = 'none';
-                    setTimeout(function(){
-                         welcomeOverlay.style.display = 'none';
-                    }, 2500);
+        window.addEventListener('load', () => {
+            // Check Session
+            const user = JSON.parse(localStorage.getItem('gUser'));
+            if(user) showDash(user);
+            
+            // LOADER LOGIC: 3 Seconds wait (approx 4 spins)
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
                 }, 800);
+            }, 3000); // 3000ms = 3 seconds to see the globe spin
 
-            }, 2500);
+            // Fetch Notice
+            fetch(API).then(r=>r.json()).then(d => {
+                if(d.notification) document.getElementById('notif-text').innerText = d.notification;
+            });
         });
 
-        // 3. Handle Login
         function handleLogin() {
-            var m = document.getElementById("userMobile").value;
-            var p = document.getElementById("userPass").value;
-            var btn = document.getElementById("loginBtn");
-            var msg = document.getElementById("status-msg");
+            const m = document.getElementById('userMobile').value;
+            const p = document.getElementById('userPass').value;
+            const btn = document.getElementById('loginBtn');
+            const err = document.getElementById('error-msg');
 
-            if(!m || !p) { alert("Please enter Mobile and Password"); return; }
+            if(!m || !p) { alert("Fill all details!"); return; }
 
-            // Show Loading State
             btn.innerText = "CHECKING...";
             btn.style.opacity = "0.7";
-            msg.style.display = "none";
+            err.style.display = "none";
 
-            fetch(SCRIPT_URL + "?mobile=" + m + "&pass=" + p)
-            .then(res => res.json())
+            fetch(API + "?mobile=" + m + "&pass=" + p)
+            .then(r => r.json())
             .then(data => {
                 btn.innerText = "LOGIN NOW";
                 btn.style.opacity = "1";
 
                 if(data.status === "success") {
-                    // Success! Switch to Dashboard
-                    document.getElementById("login-card").style.display = "none";
-                    document.getElementById("student-dashboard").style.display = "block";
-                    
-                    // Update Data
-                    document.getElementById("s-name").innerText = data.name;
-                    document.getElementById("s-rank").innerText = data.rank;
-                    document.getElementById("s-score").innerText = data.score;
-                    document.getElementById("s-homework").innerText = data.homework;
-
-                    // More Fireworks!
+                    localStorage.setItem('gUser', JSON.stringify(data));
+                    showDash(data);
                     confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
                 } else {
-                    msg.style.display = "block";
-                    msg.innerText = "❌ Incorrect Mobile or Password";
+                    err.style.display = "block";
+                    err.innerText = "❌ Wrong Mobile or Password!";
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 btn.innerText = "LOGIN NOW";
-                btn.style.opacity = "1";
-                alert("Internet connection error.");
+                alert("Network Error!");
             });
+        }
+
+        function showDash(d) {
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('app-dashboard').style.display = 'block';
+
+            document.getElementById('s-name').innerText = d.name;
+            document.getElementById('s-rank').innerText = d.rank || "N/A";
+            document.getElementById('s-score').innerText = d.score || "N/A";
+            document.getElementById('s-hw').innerText = d.homework || "No homework.";
+            
+            document.getElementById('s-class').innerText = d.class || "10th";
+            document.getElementById('s-fname').innerText = d.fname || "N/A";
+            document.getElementById('s-fees').innerText = d.fees ? "₹"+d.fees : "₹0";
+        }
+
+        function doLogout() {
+            if(confirm("Logout?")) {
+                localStorage.removeItem('gUser');
+                location.reload();
+            }
         }
     </script>
 
