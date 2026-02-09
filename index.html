@@ -369,4 +369,23 @@
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('app-dashboard').style.display = 'block';
 
-            docum
+            document.getElementById('s-name').innerText = d.name;
+            document.getElementById('s-rank').innerText = d.rank || "N/A";
+            document.getElementById('s-score').innerText = d.score || "N/A";
+            document.getElementById('s-hw').innerText = d.homework || "No homework.";
+            
+            document.getElementById('s-class').innerText = d.class || "10th";
+            document.getElementById('s-fname').innerText = d.fname || "N/A";
+            document.getElementById('s-fees').innerText = d.fees ? "₹"+d.fees : "₹0";
+        }
+
+        function doLogout() {
+            if(confirm("Logout?")) {
+                localStorage.removeItem('gUser');
+                location.reload();
+            }
+        }
+    </script>
+
+</body>
+</html>
