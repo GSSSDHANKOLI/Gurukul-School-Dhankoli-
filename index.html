@@ -15,6 +15,7 @@
     <meta property="og:title" content="Gurukul School Dhankoli" />
     <meta property="og:image" content="https://i.ibb.co/HTjCh8gd/1000100841.jpg" />
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
@@ -149,14 +150,13 @@
         </div>
 
         <div class="navbar">
-    <a href="index.html" class="active">HOME</a>
-    <a href="about.html">ABOUT</a>
-    <a href="gallery.html">GALLERY</a>
-    <a href="admission.html">ADMISSION</a>
-    <a href="contact.html">CONTACT</a>
-    
-    <a href="https://drive.google.com/file/d/1MEEBxqDFQvKdDInTJbFQR188JCAKKcDE/view?usp=drivesdk" target="_blank" class="app-link">DOWNLOAD APP</a>
-</div>
+            <a href="index.html" class="active">HOME</a>
+            <a href="about.html">ABOUT</a>
+            <a href="gallery.html">GALLERY</a>
+            <a href="admission.html">ADMISSION</a>
+            <a href="contact.html">CONTACT</a>
+            <a href="https://drive.google.com/file/d/1MEEBxqDFQvKdDInTJbFQR188JCAKKcDE/view?usp=drivesdk" target="_blank" class="app-link">DOWNLOAD APP</a>
+        </div>
 
 
         <div class="marquee-container">
@@ -178,12 +178,12 @@
             </div>
 
             <div class="card" style="text-align:center;">
-    <h3 style="border-left: 4px solid #333; padding-left: 10px; display:inline-block;">📱 Download School App</h3>
-    <div style="font-size: 40px; margin: 15px 0;">📲</div>
-    <p style="color:#666; font-size:14px;">हमारा ऑफिशियल स्कूल ऐप डाउनलोड करें!<br>सभी अपडेट, नोटिस और होमवर्क सीधे ऐप में प्राप्त करें।</p>
-    
-    <a href="https://drive.google.com/file/d/1MEEBxqDFQvKdDInTJbFQR188JCAKKcDE/view?usp=drivesdk" target="_blank" class="btn-green">DOWNLOAD APP NOW</a>
-</div>
+                <h3 style="border-left: 4px solid #333; padding-left: 10px; display:inline-block;">📱 Download School App</h3>
+                <div style="font-size: 40px; margin: 15px 0;">📲</div>
+                <p style="color:#666; font-size:14px;">हमारा ऑफिशियल स्कूल ऐप डाउनलोड करें!<br>सभी अपडेट, नोटिस और होमवर्क सीधे ऐप में प्राप्त करें।</p>
+                
+                <a href="https://drive.google.com/file/d/1MEEBxqDFQvKdDInTJbFQR188JCAKKcDE/view?usp=drivesdk" target="_blank" class="btn-green">DOWNLOAD APP NOW</a>
+            </div>
 
 
             <div id="login-section" class="card">
@@ -216,7 +216,256 @@
                 </div>
             </div>
 
-        </div> <footer class="main-footer">
+        </div> 
+        
+        <style>
+            /* --- Rainbow Animation --- */
+            @keyframes rainbowGlow {
+                0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+                20% { border-color: #ff7f00; box-shadow: 0 0 10px #ff7f00; }
+                40% { border-color: #ffff00; box-shadow: 0 0 10px #ffff00; }
+                60% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+                80% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
+                100% { border-color: #9400d3; box-shadow: 0 0 10px #9400d3; }
+            }
+
+            .rainbow-section {
+                padding: 40px 20px;
+                background: #fff; /* White background for clean look */
+                text-align: center;
+            }
+
+            .rainbow-title {
+                font-size: 30px;
+                font-weight: 900;
+                margin-bottom: 40px;
+                text-transform: uppercase;
+                background: linear-gradient(to right, #ff0000, #ff7f00, #00ff00, #0000ff, #4b0082, #9400d3);
+                -webkit-background-clip: text;
+                color: transparent;
+                animation: rainbowText 3s infinite;
+            }
+            
+            @keyframes rainbowText { 
+                0% { filter: hue-rotate(0deg); } 
+                100% { filter: hue-rotate(360deg); } 
+            }
+
+            .r-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 25px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .r-card {
+                background: white;
+                padding: 25px;
+                border-radius: 15px;
+                border: 3px solid transparent; /* Start transparent */
+                position: relative;
+                transition: 0.3s;
+                /* Default Rainbow Border */
+                border-image: linear-gradient(45deg, #ff0000, #ffff00, #0000ff) 1;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+            .r-card:hover {
+                transform: translateY(-10px);
+                /* Glowing Animation on Hover */
+                animation: rainbowGlow 0.7s infinite linear; 
+                border-radius: 15px; /* Keep rounded corners */
+            }
+
+            .r-icon {
+                font-size: 40px;
+                margin-bottom: 15px;
+                display: inline-block;
+                /* Icon Gradient */
+                background: linear-gradient(45deg, #ff00cc, #3333ff);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .r-head { font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px; }
+            .r-desc { font-size: 14px; color: #666; line-height: 1.5; }
+
+        </style>
+
+        <section class="rainbow-section">
+            <h2 class="rainbow-title">✨ स्कूल की मुख्य सुविधाएँ ✨</h2>
+
+            <div class="r-grid">
+                <div class="r-card">
+                    <i class="fas fa-shield-alt r-icon"></i>
+                    <div class="r-head">सुरक्षा (Safety)</div>
+                    <div class="r-desc">24/7 सीसीटीवी कैमरे, अग्निशमन यंत्र, जीपीएस युक्त सुरक्षित बस और प्रशिक्षित सुरक्षाकर्मी।</div>
+                </div>
+
+                <div class="r-card">
+                    <i class="fas fa-laptop-code r-icon" style="background: linear-gradient(45deg, #ff9900, #ff0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <div class="r-head">शिक्षा और कौशल</div>
+                    <div class="r-desc">आधुनिक स्मार्ट क्लासरूम, साइंस और कंप्यूटर लैब, और एक समृद्ध लाइब्रेरी।</div>
+                </div>
+
+                <div class="r-card">
+                    <i class="fas fa-hand-sparkles r-icon" style="background: linear-gradient(45deg, #00ff00, #009900); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <div class="r-head">स्वच्छता (WASH)</div>
+                    <div class="r-desc">साफ-सफाई, हैंडवाशिंग स्टेशन, नियमित शौचालय की सफाई और RO का पानी।</div>
+                </div>
+
+                <div class="r-card">
+                    <i class="fas fa-user-nurse r-icon" style="background: linear-gradient(45deg, #ff0066, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <div class="r-head">स्वास्थ्य (Health)</div>
+                    <div class="r-desc">प्राथमिक चिकित्सा (First Aid), नर्स/डॉक्टर की उपलब्धता और स्वास्थ्य जांच।</div>
+                </div>
+
+                <div class="r-card">
+                    <i class="fas fa-running r-icon" style="background: linear-gradient(45deg, #00ccff, #0000ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <div class="r-head">शारीरिक विकास</div>
+                    <div class="r-desc">विशाल खेल का मैदान, खेल उपकरण और मानसिक विकास के लिए काउंसलर।</div>
+                </div>
+
+                <div class="r-card">
+                    <i class="fas fa-wheelchair r-icon" style="background: linear-gradient(45deg, #9900ff, #ff00ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></i>
+                    <div class="r-head">समावेशी (Inclusive)</div>
+                    <div class="r-desc">दिव्यांग बच्चों के लिए रैम्प और विशेष सुविधाएं ताकि शिक्षा सबके लिए हो।</div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            /* --- Rainbow Border Animation --- */
+            @keyframes borderDance {
+                0% { border-image-source: linear-gradient(45deg, #ff0000, #ff7f00); }
+                25% { border-image-source: linear-gradient(45deg, #ffff00, #00ff00); }
+                50% { border-image-source: linear-gradient(45deg, #0000ff, #4b0082); }
+                75% { border-image-source: linear-gradient(45deg, #9400d3, #ff00cc); }
+                100% { border-image-source: linear-gradient(45deg, #ff0000, #ff7f00); }
+            }
+
+            /* --- Pulse Animation for FREE Education --- */
+            @keyframes pulseGlow {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+                70% { transform: scale(1.05); box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+            }
+
+            .notice-section {
+                padding: 40px 20px;
+                background: #fafafa;
+                text-align: center;
+                border-top: 2px dashed #ddd;
+            }
+
+            .notice-title {
+                font-size: 32px;
+                font-weight: 900;
+                margin-bottom: 40px;
+                background: linear-gradient(to left, #ff0000, #ff00cc, #3333ff);
+                -webkit-background-clip: text;
+                color: transparent;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .notice-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .n-card {
+                background: white;
+                padding: 20px;
+                border: 4px solid transparent;
+                border-radius: 10px;
+                border-image-slice: 1;
+                animation: borderDance 3s infinite linear; /* Animated Border */
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: 0.3s;
+                position: relative;
+            }
+
+            .n-card:hover { transform: translateY(-5px); }
+
+            .n-badge {
+                background: #ff0000;
+                color: white;
+                padding: 5px 15px;
+                font-size: 12px;
+                font-weight: bold;
+                border-radius: 20px;
+                position: absolute;
+                top: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                box-shadow: 0 5px 10px rgba(255,0,0,0.3);
+            }
+
+            .n-percent {
+                font-size: 35px;
+                font-weight: 900;
+                color: #333;
+                margin: 10px 0;
+                display: block;
+            }
+            
+            .n-text { font-size: 14px; color: #555; font-weight: 600; line-height: 1.5; }
+
+            /* Special Style for FREE Education */
+            .special-card {
+                background: #fff0f0;
+                border: none;
+                box-shadow: 0 0 15px #ff0000;
+                animation: pulseGlow 2s infinite;
+            }
+            .special-card .n-percent { color: #ff0000; }
+
+        </style>
+
+        <section class="notice-section">
+            <h2 class="notice-title">📢 महत्वपूर्ण सूचना (Notices) 📢</h2>
+
+            <div class="notice-grid">
+                
+                <div class="n-card">
+                    <span class="n-badge">LIMITED OFFER</span>
+                    <span class="n-percent" style="color:#ff9900;">20% छूट</span>
+                    <div class="n-text">15 मई 2026 तक प्रथम 300 प्रवेश लेने वाले विद्यार्थियों को फीस में विशेष छूट।</div>
+                </div>
+
+                <div class="n-card">
+                    <span class="n-badge">MERIT SCHOLARSHIP</span>
+                    <span class="n-percent" style="color:#0000ff;">30% छूट</span>
+                    <div class="n-text">कक्षा 10वीं बोर्ड में 90% से अधिक अंक लाने वाले होनहार बच्चों के लिए।</div>
+                </div>
+
+                <div class="n-card">
+                    <span class="n-badge">GOVT. SCHEME</span>
+                    <span class="n-percent" style="color:#009900;">25% फ्री</span>
+                    <div class="n-text">R.T.E. (शिक्षा का अधिकार) के तहत प्रवेश पूर्णतः निःशुल्क (Free)।</div>
+                </div>
+
+                <div class="n-card">
+                    <span class="n-badge">SUPPORT</span>
+                    <span class="n-percent" style="color:#9900ff;">30% छूट</span>
+                    <div class="n-text">दिव्यांग (Differently-abled) बच्चों को फीस में विशेष सहायता।</div>
+                </div>
+
+                <div class="n-card special-card">
+                    <span class="n-badge" style="background:#000;">NO FEES</span>
+                    <span class="n-percent">100% मुफ़्त</span>
+                    <div class="n-text">असहाय व अनाथ बच्चों के लिए<br>निःशुल्क शिक्षा की व्यवस्था।</div>
+                </div>
+
+            </div>
+        </section>
+        
+        <footer class="main-footer">
             <div class="footer-content">
                 <p style="margin:0; font-size: 15px;">Follow Us On Social Media:</p>
                 <div class="social-grid">
